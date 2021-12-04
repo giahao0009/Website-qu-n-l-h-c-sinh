@@ -1,38 +1,618 @@
-.App {
-  text-align: center;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.login-component{
+    background-image: url(image/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.login-component .login-form{
+    border: none;
+    width: 600px;
+    text-align: center;
+    padding: 60px 90px;
+    border-radius: 25px;
+    background-color: rgba(152, 0, 137, 80%);
+    box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 25%);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.login-component .login-form h1{
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.login-component .login-form h2{
+    color: #fff;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+.form-group{
+    margin-bottom: 40px;
+}
+
+.form-control{
+    background-color: rgba(235, 235, 235, 0);
+    font-size: 18px;
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255, 50%);
+    outline: none;
+    color: #fff;
+}
+
+.form-control::placeholder{
+    color: rgba(255,255,255, 50%);
+}
+
+.btn-login{
+    font-size: 18px;
+    width: 150px;
+    padding: 12px 5px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    background-color: #568AEF;
+    color: #fff;
+}
+
+.btn-login:hover{
+    cursor: pointer;
+    transform: translateY(-8px);
+    transition: 1s;
+}
+
+/* Homepage */
+.homepage-component{
+    min-height: 100vh;
+    position: relative;
+}
+.homepage-component .sidebar-menu{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 25%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(95, 0, 216, 1), rgba(152, 0, 137, 1));
+    padding: 50px 20px;
+    box-shadow: 0 0 20px ;
+}
+.avatar-img{
+    background-image: url(image/avatar.jpg);
+    background-size: cover;
+    display: inline-block;
+    width: 140px;
+    height: 140px;
+    border-radius:50%;
+    border: 1px solid #fff;
+}
+.avatar-name{
+    display: inline-block;
+    float: right;
+    margin-top: 50px;
+    width: 250px;
+}
+
+.username{
+    color: #fff;
+    font-size:30px;
+}
+
+.sub-name{
+    color: #fff;
+    font-size: 18px;
+    opacity: 70%;
+}
+
+.sidebar-menu hr{
+    margin-top: 40px;
+    opacity: 50%;
+}
+
+/* navigation menu */
+
+.navigation-menu {
+    padding: 50px 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.navigation-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+    margin-bottom: 50px;
+}
+
+.navi-icon{
+    margin-right: 30px;
+}
+
+.btn-signOut{
+    padding: 10px;
+    font-size: 24px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+    color: #fff;
+    background-color: #EC6B6B;
+}
+
+.btn-signOut:hover{
+    cursor: pointer;
+}
+
+/* ---- */
+
+.content{
+    width: 75%;
+    background-image: url(./image/background.jpg);
+    background-size: cover;
+    min-height: 100vh;
+    margin-left: 25%;
+}
+
+/* Content css */
+.container-content{
+    padding: 100px 80px;
+}
+
+.count-list{
+    display: flex;
+    justify-content: space-between;
+}
+
+.count-item{
+    display: flex;
+    background-color: #fff;
+    width: 350px;
+    height: 140px;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 25px;
+    padding: 20px 0;
+    box-shadow: 0 0  10px ;
+}
+
+.count-icon{
+    text-align: center;
+}
+
+.count-item .icon{
+    font-size: 70px;   
+}
+
+.count-icon p{
+    font-size: 20px;
+    font-weight: bold;
+}
+.count-item > p{
+    font-size: 20px;
+    font-weight: bold;
+}
+.count-item hr{
+    width: 0;
+    height: 100%;
+}
+
+.icon-student{
+    color: rgb(8, 151, 8);
+}
+
+.icon-teacher{
+    color: rgb(75, 75, 241);
+}
+
+.icon-school{
+    color: palevioletred;
+}
+
+.calendar{
+    margin-top: 60px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 0  10px ;
+}
+
+.react-calendar{
+    width: 100%!important;
+    border-radius: 25px;
+    font-size: 25px;
+    height: 450px;
+}
+
+.react-calendar button {
+    font-size: 20px;
+}
+
+/* Subject */
+.container-subject{
+    text-align: center;
+    padding: 60px;
+}
+.container-subject h1 {
+    color: #fff;
+    margin-bottom: 50px;
+}
+.container-subject table{
+    font-size: 23px;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 auto;
+    border-spacing: 20px;
+    background-color: #fff;
+}
+.container-subject table thead{
+    color: #fff;
+    border-radius: 25px;
+}
+.container-subject table th{
+    padding: 10px;
+    background-color: #212529;
+    border-bottom: 1px solid #000;
+}
+.container-subject table td{
+    padding: 10px;
+    border-bottom: 1px solid #000;
+}
+.container-subject table tr:last-child{
+    border: none;
+}
+
+/* Css teachers */
+.container-teacher{
+    padding: 150px 100px
+}
+
+.container-teacher table{
+    border: 1px solid #000;
+    font-size: 23px;
+    margin-top: 20px;
+    width: 100%;
+    border-spacing: 20px;
+    border-collapse: collapse;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+.container-teacher table thead{
+    background-color: #212529;
+}
+.container-teacher table th{
+    padding: 10px;
+}
+
+.container-teacher table td{
+    padding: 10px;
+    color: #000;
+    background-color: #fff;
+}
+
+/* Css search input */
+
+.group-search{
+    display: inline-block;
+    position: relative;
+}
+
+.input-search{
+    width: 700px;
+    padding: 10px 20px;
+    font-size: 20px;
+    border: none;
+    border-radius:10px;
+    outline: none;
+}
+
+.input-search-icon{
+    position: absolute;
+    font-size: 30px;
+    right: 15px;
+    top: 5px;
+    opacity: 50%;
+}
+
+.input-search-icon:hover{
+    opacity: 100%;
+    cursor: pointer;
+}
+
+/* Css add btn */
+.add-btn{
+    padding: 10px 8px;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #3DFB2C;
+    color: #fff;
+    font-weight: bold;
+    float: right;
+}
+
+.add-btn{
+    cursor: pointer;
+}
+
+.btn-detail{
+    padding: 5px 20px;
+    font-size: 30px;
+    background-color: #88F16E;
+    border: none;
+    border-radius:10px;
+    line-height: 30px;
+}
+
+.btn-detail:hover{
+    cursor: pointer;
+}
+
+.btn-delete{
+    padding: 5px 20px;
+    font-size: 30px;
+    background-color: #F16E6E;
+    border: none;
+    border-radius:10px;
+    line-height: 30px;
+}
+
+.btn-delete:hover{
+    cursor: pointer;
+}
+
+/* Detail teacher */
+.container-teacher-detail h1{
+    text-align: center;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.form-detail-teacher{
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 50px 40px;
+}
+
+.form-detail-teacher .form-control{
+    margin-top: 10px;
+    color: #000;
+    background-color: #F5F5F5;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+
+.group-btn-control{
+    display: flex;
+    justify-content: space-around;
+}
+
+.group-btn-control .btn-change{
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: #5FFF44;
+    color: #fff;
+}
+
+.group-btn-control .btn-return{
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: #D7FF37;
+    color: #fff;
+}
+
+.group-btn-control .btn-return,.btn-change:hover{
+    cursor: pointer;
+}
+
+.btn-return{
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: #D7FF37;
+    color: #fff;
+}
+
+.btn-return:hover{
+    cursor: pointer;
+}
+/* Css student button */
+.container-student{
+    padding: 150px 100px;
+}
+
+.container-student table{
+    border: 1px solid #000;
+    font-size: 23px;
+    margin-top: 20px;
+    width: 100%;
+    border-spacing: 20px;
+    border-collapse: collapse;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+.container-student table thead{
+    background-color: #212529;
+}
+.container-student table th{
+    padding: 10px;
+}
+
+.container-student table td{
+    padding: 10px;
+    color: #000;
+    background-color: #fff;
+}
+
+/* Pagination */
+.paginationBttns {
+    margin-top: 40px;
+  width: 80%;
+  height: 40px;
+  list-style: none;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.paginationBttns a {
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  border: 1px solid #2b2eff;
+  background-color: #a19c9c;
+  color: #fff;
+  cursor: pointer;
+}
+
+.paginationBttns a:hover {
   color: white;
+  background-color: #2b2eff;
 }
 
-.App-link {
-  color: #61dafb;
+.paginationActive a {
+  color: white;
+  background-color: #2b2eff;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.paginationDisabled a {
+  display: none;
+}
+
+/* Detail student */
+.container-student-detail h1{
+    text-align: center;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.form-detail-student{
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 50px 40px;
+}
+
+.form-detail-student .form-control{
+    margin-top: 10px;
+    color: #000;
+    background-color: #F5F5F5;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+
+/* Css classList */
+.container-classes{
+    padding: 150px 100px;
+}
+
+.container-classes h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.container-classes table{
+    border: 1px solid #000;
+    font-size: 23px;
+    margin-top: 20px;
+    width: 100%;
+    border-spacing: 20px;
+    border-collapse: collapse;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+.container-classes table thead{
+    background-color: #212529;
+}
+.container-classes table th{
+    padding: 10px;
+}
+
+.container-classes table td{
+    padding: 10px;
+    color: #000;
+    background-color: #fff;
+}
+
+.btn-class{
+    float: right;
+    margin-bottom: 10px;
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    border-radius:10px;
+    color: #fff;
+    background-color: #3DFB2C;
+}
+
+.btn-class:hover{
+    cursor: pointer;
+}
+
+/* ClassAdd css */
+.container-addClass table{
+    border: 1px solid #000;
+    font-size: 23px;
+    margin-top: 20px;
+    width: 100%;
+    border-spacing: 20px;
+    border-collapse: collapse;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.container-addClass table thead td{
+    color: #fff;
+    background-color: #212529;
+}
+
+.container-addClass table td{
+    padding: 10px;
+    color: #000;
+}
+
+
+.select-control{
+    font-size: 18px;
+    padding: 10px 5px;
+    border-radius: 10px;
+}
+
+
+/* Css table pointer */
+.container-student table thead td{
+    background-color: #212529;
+    color: #fff;
+}
+
+/* Css container-detail-point */
+.container-detail-point{
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.container-detail-point p {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.input-point-add {
+    padding: 10px;
+    font-size: 18px;
+    
 }

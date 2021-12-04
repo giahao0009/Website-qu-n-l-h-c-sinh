@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import firebaseConfig from './Firebase';
+import { initializeApp } from "firebase/app";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Login from "./component/Login/index";
+import Homepage from "./component/Homepage/index";
+
+initializeApp(firebaseConfig);
 
 function App() {
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router className="modal-container">
+        <Switch>
+          <Route path="/homepage" render={() => {
+            return localStorage.getItem("token") ? <Homepage /> : <Login/>
+          }}>
+          </Route>
+          <Route path="/">
+            <Login />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
