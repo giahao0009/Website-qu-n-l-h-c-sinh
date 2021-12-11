@@ -69,11 +69,43 @@ function Student(){
     }
 
 
+    // Hàm search tìm kiếm
+    const [searchStudent, setSearchStudent] = useState("");
+    const [modalSearchStudent, openModalSearchStudent] = useState(false);
+    const [arrStudentFilter, setArrStudentFilter] = useState(null);
+    const searchStudentFunc = () => {
+        let stringSearchStudent = searchStudent.toLowerCase().split(' ');
+        let arrStudent = students.filter((student) => {
+            let containAtLeastOneWord = false;
+            stringSearchStudent.forEach((word) => {
+                if(student.name.toLowerCase().includes(word)) {
+                    containAtLeastOneWord = true;
+                }
+            })
+            if(containAtLeastOneWord) return student;
+        });
+        let count = 0;
+        let arrStudentFilterOne = arrStudent.map((student) => {
+            count++;
+            return (<tr key={student.id}>
+                <td>{count}</td>
+                <td>{student.name}</td>
+                <td>{student.id}</td>
+                <td>{student.gender}</td>
+                <td><button className="btn-detail" onClick={() => {openDetail(student)}}><BiTable/></button></td>
+                <td><button className="btn-delete" onClick={() => {deleteStudent(student.id)}}><AiFillDelete/></button></td>
+            </tr>)
+        });
+        setArrStudentFilter(arrStudentFilterOne);
+        openModalSearchStudent(true);
+        console.log(arrStudentFilter);
+    }
+
     return <div className="container-student">
             <div className="contain-student">
                 <div className="group-search">
-                    <input className="input-search" placeholder="Nhập tên học sinh cần tìm kiếm"/>
-                    <FiSearch className="input-search-icon"/>
+                    <input className="input-search" placeholder="Nhập tên học sinh cần tìm kiếm" onChange={(e) => {setSearchStudent(e.target.value)}}/>
+                    <FiSearch className="input-search-icon" onClick = {searchStudentFunc}/>
                 </div>
                 <button className="add-btn" onClick={openAdd}>Thêm học sinh</button>
                 <table>
@@ -88,7 +120,7 @@ function Student(){
                         </tr>
                     </thead>
                     <tbody>
-                        {renderListStudent}
+                        {!modalSearchStudent ? renderListStudent : arrStudentFilter}
                     </tbody>
                 </table>
                 <ReactPaginate
