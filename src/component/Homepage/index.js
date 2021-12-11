@@ -23,6 +23,16 @@ function Homepage() {
         }
         getStudents();
     },[])
+
+    const [teachers, setTeachers] = useState([]);
+    const teachersCollectionRef = collection(db, "teachers");
+    useEffect(() => {
+        const getTeacher = async () => {
+            const data = await getDocs(teachersCollectionRef);
+            setTeachers(data.docs.map((doc) => ({...doc.data(), id: doc.id})));
+        }
+        getTeacher();
+    },[])
     
 
     // Btn logout
@@ -56,7 +66,7 @@ function Homepage() {
                 <div className="content">                
                     <Switch >
                         <Route exact path="/homepage">
-                            <Content countStudent = {students.length}/>
+                            <Content countStudent = {students.length} countTeacher = {teachers.length}/>
                         </Route>
                         <Route path="/homepage/student">
                             <Student students = {students}/>

@@ -58,15 +58,28 @@ function ListStudentAddPoint(props) {
     const updatePoint = async (student) => {
         setStudentUpdate(student);
         let subjectId = getSubjectId();
-        let bangDiem15P = student.bangDiem15P;
-        let bangDiem1T = student.bangDiem1T;
-        bangDiem15P[subjectId] = parseInt(changePoint15P);
-        bangDiem1T[subjectId] = parseInt(changePoint1T);
-        setStudentUpdate({... studentUpdate, bangDiem15P, bangDiem1T});
+        if(props.filter.term == "Học kỳ 1"){
+            let bangDiem15P = student.bangDiem15P;
+            let bangDiem1T = student.bangDiem1T;
+            bangDiem15P[subjectId] = parseInt(changePoint15P);
+            bangDiem1T[subjectId] = parseInt(changePoint1T);
+            setStudentUpdate({... studentUpdate, bangDiem15P, bangDiem1T});
+        }
+        if(props.filter.term == "Học kỳ 2"){
+           let bangDiem15P2 = student.bangDiem15P2;
+           let bangDiem1T2 = student.bangDiem1T2;
+           bangDiem15P2[subjectId] = parseInt(changePoint15P);
+           bangDiem1T2[subjectId] = parseInt(changePoint1T);
+           setStudentUpdate({...studentUpdate, bangDiem15P2, bangDiem1T2});
+        }
         const studentRef = doc(db, "students", student.id);
         if(window.confirm("Bạn có muốn cập nhật điểm của học sinh ???")){
             await updateDoc(studentRef, studentUpdate);
         }
+    }
+
+    const calAvg = (number1, number2) => {
+        return (number1 + number2)/2; 
     }
 
     const onChangeInput = (e) => {
@@ -90,12 +103,13 @@ function ListStudentAddPoint(props) {
             point15p = student.bangDiem15P2[subjectId];
             point1T = student.bangDiem1T2[subjectId];
         }
+        let avg = calAvg(point15p, point1T);
         return (<tr key={student.id}>
             <td>{student.id}</td>
             <td>{student.name}</td>
             <td><input type="number" name = "point15P" className="input-point-add" min="0" max="10" onChange={(e) => onChangeInput(e)} defaultValue={point15p}/></td>
             <td><input type="number" name = "point1T" className="input-point-add" min="0" max="10" onChange={(e) => onChangeInput(e)} defaultValue={point1T}/></td>
-            <td><input type="number" className="input-point-add" min="0" max="10" disabled="disabled" /></td>
+            <td><input type="number" className="input-point-add" min="0" max="10" disabled="disabled" defaultValue={avg} /></td>
             <td><button className="add-btn" onClick={() => updatePoint(student)}>Lưu</button></td>
         </tr>)
     })

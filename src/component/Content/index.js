@@ -22,7 +22,7 @@ function Content(props) {
                         <p>Giáo viên</p>
                     </div>
                     <hr/>
-                    <p>60</p>
+                    <p>{props.countTeacher}</p>
                 </div>
                 <div className="count-item count-student">
                     <div className="count-icon">
